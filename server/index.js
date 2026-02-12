@@ -15,7 +15,7 @@ const app = express()
 app.use(cors(
     {
         origin:"employee-management-19ti.vercel.app"
-        credebtials : true
+        credentials : true
     }
 ))
 app.use(express.json())
