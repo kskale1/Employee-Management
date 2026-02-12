@@ -61,7 +61,8 @@ export const getEmployees = async (id) => {
   let employees;
   try {
     const responnse = await axios.get(
-      `http://localhost:5000/api/employee/department/${id}`,
+      `https://employee-management-19ti.vercel.app
+/api/employee/department/${id}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
