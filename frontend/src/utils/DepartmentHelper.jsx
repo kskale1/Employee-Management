@@ -25,7 +25,7 @@ export const DepartmentButtons = ({ Id, onDepartmentDelete }) => {
     if (confirm) {
       try {
         const responnse = await axios.delete(
-          `employee-management-19ti.vercel.app
+          `https://employee-management-19ti.vercel.app
 /api/department/${id}`,
           {
             headers: {
