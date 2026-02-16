@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../../utils/constant";
 
 const Add = () => {
   const [departments, setDepartments] = useState([]);
@@ -35,7 +36,7 @@ const Add = () => {
 
     try {
       const response = await axios.post(
-        "https://employee-management-backend-oelxa09au.vercel.app/api/employee/add",
+        `${BASE_URL}/employee/add`,
         formDataObj,
         {
           headers: {

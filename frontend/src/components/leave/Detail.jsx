@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { BASE_URL } from "../../utils/constant";
 
 const Detail = () => {
   const { id } = useParams();
@@ -11,7 +12,7 @@ const Detail = () => {
     const fetchLeave = async () => {
       try {
         const responnse = await axios.get(
-          `https://employee-management-backend-oelxa09au.vercel.app/api/leave/detail/${id}`,
+          `${BASE_URL}/leave/detail/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -35,7 +36,7 @@ const Detail = () => {
   const changeStatus = async (id, status) => {
     try {
       const responnse = await axios.put(
-        `https://employee-management-backend-oelxa09au.vercel.app/api/leave/${id}`, { status },
+        `${BASE_URL}/leave/${id}`, { status },
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

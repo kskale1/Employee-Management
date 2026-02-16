@@ -10,6 +10,7 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import axios from 'axios'
+import { BASE_URL } from '../../utils/constant'
 
 const AdminSummary = () => {
   const [summary, setSummary] = useState(null)
@@ -17,7 +18,7 @@ const AdminSummary = () => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const summary = await axios.get('https://employee-management-backend-oelxa09au.vercel.app/api/dashboard/summary', {
+        const summary = await axios.get(`${BASE_URL}/dashboard/summary`, {
           headers: {
             "Authorization": `Bearer ${localStorage.getItem('token')}`
           }

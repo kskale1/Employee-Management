@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { columns, AttendanceHelper } from "../../utils/AttendanceHelper";
 import DataTable from "react-data-table-component";
 import axios from "axios";
+import { BASE_URL } from "../../utils/constant";
 
 const Attendance = () => {
   const [attendance, setAttendance] = useState([]);
@@ -16,7 +17,7 @@ const Attendance = () => {
   const fetchAttendance = async () => {
     setLoading(true);
     try {
-      const responnse = await axios.get("https://employee-management-backend-oelxa09au.vercel.app/api/attendance", {
+      const responnse = await axios.get(`${BASE_URL}/attendance`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

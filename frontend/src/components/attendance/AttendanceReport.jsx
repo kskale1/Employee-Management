@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { BASE_URL } from "../../utils/constant";
 
 const AttendanceReport = () => {
   const [report, setReport] = useState({});
@@ -16,7 +17,7 @@ const AttendanceReport = () => {
         query.append("date", dateFilter);
       }
       const responnse = await axios.get(
-        `https://employee-management-backend-oelxa09au.vercel.app/api/attendance/report?${query.toString()}`,
+        `${BASE_URL}/attendance/report?${query.toString()}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,

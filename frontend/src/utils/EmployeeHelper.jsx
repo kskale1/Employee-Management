@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { BASE_URL } from "./constant";
 
 export const columns = [
   {
@@ -40,7 +41,7 @@ export const columns = [
 export const fetchDepartments = async () => {
   let departments;
   try {
-    const responnse = await axios.get("https://employee-management-backend-oelxa09au.vercel.app/api/department", {
+    const responnse = await axios.get(`${BASE_URL}/department`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
@@ -61,8 +62,7 @@ export const getEmployees = async (id) => {
   let employees;
   try {
     const responnse = await axios.get(
-      `https://employee-management-19ti.vercel.app
-/api/employee/department/${id}`,
+      `${BASE_URL}/employee/department/${id}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

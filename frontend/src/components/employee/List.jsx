@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { columns, EmployeeButtons } from '../../utils/EmployeeHelper'
 import DataTable from 'react-data-table-component'
 import axios from 'axios'
+import { BASE_URL } from '../../utils/constant'
 
 const List = () => {
   const [employees, setEmployees] = useState([])
@@ -14,7 +15,7 @@ const List = () => {
       setEmpLoading(true)
       try {
         const responnse = await axios.get(
-          "https://employee-management-backend-oelxa09au.vercel.app/api/employee",
+          `${BASE_URL}/employee`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

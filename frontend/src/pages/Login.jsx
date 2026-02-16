@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL } from "../utils/constant";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -15,7 +16,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://employee-management-backend-oelxa09au.vercel.app/api/auth/login",
+        `${BASE_URL}/auth/login`,
         { email, password }
       );
       if (response.data.success) {

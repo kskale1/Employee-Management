@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { BASE_URL } from "../../utils/constant";
 
 const Add = () => {
   const { user } = useAuth()
@@ -22,7 +23,7 @@ const Add = () => {
 
     try {
       const response = await axios.post(
-        `https://employee-management-backend-oelxa09au.vercel.app/api/leave/add`, leave,
+        `${BASE_URL}/leave/add`, leave,
         {
           headers: {
             "Authorization": `Bearer ${localStorage.getItem("token")}`,

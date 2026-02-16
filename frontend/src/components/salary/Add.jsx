@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchDepartments, getEmployees } from "../../utils/EmployeeHelper";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { BASE_URL } from "../../utils/constant";
 
 const Add = () => {
   const [salary, setSalary] = useState({
@@ -38,7 +39,7 @@ const Add = () => {
 
     try {
       const response = await axios.post(
-        `https://employee-management-backend-oelxa09au.vercel.app/api/salary/add`,
+        `${BASE_URL}/salary/add`,
         salary,
         {
           headers: {

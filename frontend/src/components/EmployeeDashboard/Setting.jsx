@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
+import { BASE_URL } from "../../utils/constant";
 
 const Setting = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Setting = () => {
     } else {
       try {
         const response = await axios.put(
-          "https://employee-management-backend-oelxa09au.vercel.app/api/setting/change-password",
+          `${BASE_URL}/setting/change-password`,
           setting,
           {
             headers: {

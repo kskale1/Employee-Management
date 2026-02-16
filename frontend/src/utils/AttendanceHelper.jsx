@@ -1,5 +1,6 @@
 import axios from "axios";
 import React from "react";
+import { BASE_URL } from "./constant";
 
 export const columns = [
   {
@@ -33,7 +34,7 @@ export const columns = [
 
 export const AttendanceHelper = ({ status, employeeId, statusChange }) => {
   const markEmployee = async (status, employeeId) => {
-    const response = await axios.put(`https://employee-management-backend-oelxa09au.vercel.app/api/attendance/update/${employeeId}`, { status }, {
+    const response = await axios.put(`${BASE_URL}/attendance/update/${employeeId}`, { status }, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
       },

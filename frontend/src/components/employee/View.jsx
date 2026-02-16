@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { BASE_URL } from "../../utils/constant";
 
 const View = () => {
   const { id } = useParams();
@@ -10,7 +11,7 @@ const View = () => {
     const fetchEmployee = async () => {
       try {
         const responnse = await axios.get(
-          `https://employee-management-backend-oelxa09au.vercel.app/api/employee/${id}`,
+          `${BASE_URL}/employee/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

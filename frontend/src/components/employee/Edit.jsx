@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchDepartments } from "../../utils/EmployeeHelper";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { BASE_URL } from "../../utils/constant";
 
 const Edit = () => {
   const [employee, setEmployee] = useState({
@@ -27,7 +28,7 @@ const Edit = () => {
     const fetchEmployee = async () => {
       try {
         const responnse = await axios.get(
-          `https://employee-management-backend-oelxa09au.vercel.app/api/employee/${id}`,
+          `${BASE_URL}/employee/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -65,7 +66,7 @@ const Edit = () => {
 
     try {
       const response = await axios.put(
-        `https://employee-management-backend-oelxa09au.vercel.app/api/employee/${id}`,
+        `${BASE_URL}/employee/${id}`,
         employee,
         {
           headers: {

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { BASE_URL } from "../../utils/constant";
 
 const EditDepartment = () => {
   const { id } = useParams();
@@ -13,7 +14,7 @@ const EditDepartment = () => {
       setDepLoading(true);
       try {
         const responnse = await axios.get(
-          `https://employee-management-backend-oelxa09au.vercel.app/api/department/${id}`,
+          `${BASE_URL}/department/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -44,7 +45,7 @@ const EditDepartment = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `https://employee-management-backend-oelxa09au.vercel.app/api/department/${id}`,
+        `${BASE_URL}/department/${id}`,
         department,
         {
           headers: {
