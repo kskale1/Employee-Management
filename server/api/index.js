@@ -13,11 +13,18 @@ import connectToDatabase from '../db/db.js'
 
 dotenv.config();
 
-connectToDatabase() 
-const app = express() 
+connectToDatabase()
+const app = express()
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL || '*'
+  origin: "https://employee-management-mu-seven.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"]
 }))
+
+// Handle preflight requests
+app.options('*', cors())
 app.use(express.json())
 app.use(express.static('public/uploads'))
 
