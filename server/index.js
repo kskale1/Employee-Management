@@ -16,7 +16,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: "https://employee-management-19ti.vercel.app",
+    origin: "http://localhost:5173",
     credentials: true
   })
 )
@@ -32,5 +32,14 @@ app.use('/api/leave', leaveRouter)
 app.use('/api/setting', settingRouter)
 app.use('/api/attendance', attendanceRouter)
 app.use('/api/dashboard', dashboardRouter)
+
+app.listen(process.env.PORT, () => {
+  console.log('Server is running on port 5000')
+})
+
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the Employee Management System API')
+})
 
 export default app
