@@ -10,7 +10,7 @@ const View = () => {
     const fetchEmployee = async () => {
       try {
         const responnse = await axios.get(
-          `http://localhost:5000/api/employee/${id}`,
+          `https://employee-management-backend-oelxa09au.vercel.app/api/employee/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

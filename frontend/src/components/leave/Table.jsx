@@ -9,7 +9,7 @@ const Table = () => {
 
   const fetchLeaves = async () => {
     try {
-      const responnse = await axios.get("http://localhost:5000/api/leave", {
+      const responnse = await axios.get("https://employee-management-backend-oelxa09au.vercel.app/api/leave", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -75,15 +75,15 @@ const Table = () => {
             />
             <div className="space-x-3">
               <button className="px-2 py-1 bg-teal-600 text-white hover:bg-teal-700"
-              onClick={() => filterByButton("Pending")}>
+                onClick={() => filterByButton("Pending")}>
                 Pending
               </button>
               <button className="px-2 py-1 bg-teal-600 text-white hover:bg-teal-700"
-              onClick={() => filterByButton("Approved")}>
+                onClick={() => filterByButton("Approved")}>
                 Approved
               </button>
               <button className="px-2 py-1 bg-teal-600 text-white hover:bg-teal-700"
-              onClick={() => filterByButton("Rejected")}>
+                onClick={() => filterByButton("Rejected")}>
                 Rejected
               </button>
             </div>

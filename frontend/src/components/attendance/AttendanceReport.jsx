@@ -16,7 +16,7 @@ const AttendanceReport = () => {
         query.append("date", dateFilter);
       }
       const responnse = await axios.get(
-        `http://localhost:5000/api/attendance/report?${query.toString()}`,
+        `https://employee-management-backend-oelxa09au.vercel.app/api/attendance/report?${query.toString()}`,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -50,11 +50,11 @@ const AttendanceReport = () => {
       <h2 className="text-center text-2xl font-bold">Attendance Report</h2>
       <div>
         <h2 className="text-xl font-semibold">Filter by Date</h2>
-        <input type="date" className="border bg-gray-100" 
-        onChange={(e) => {
-          setDateFilter(e.target.value);
-          setSkip(0)
-        }}/>
+        <input type="date" className="border bg-gray-100"
+          onChange={(e) => {
+            setDateFilter(e.target.value);
+            setSkip(0)
+          }} />
       </div>
       {loading ? (
         <div> Loading...</div>

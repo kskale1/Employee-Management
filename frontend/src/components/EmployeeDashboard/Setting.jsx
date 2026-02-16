@@ -7,7 +7,7 @@ import { useAuth } from "../../context/AuthContext";
 const Setting = () => {
   const navigate = useNavigate();
   const { user } = useAuth()
-    const [setting, setSetting] = useState({
+  const [setting, setSetting] = useState({
     userId: user._id,
     oldPassword: "",
     newPassword: "",
@@ -17,7 +17,7 @@ const Setting = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-      setSetting({ ...setting, [name]: value });
+    setSetting({ ...setting, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -27,7 +27,7 @@ const Setting = () => {
     } else {
       try {
         const response = await axios.put(
-          "http://localhost:5000/api/setting/change-password",
+          "https://employee-management-backend-oelxa09au.vercel.app/api/setting/change-password",
           setting,
           {
             headers: {
@@ -37,7 +37,7 @@ const Setting = () => {
         );
         if (response.data.success) {
           navigate("/admin-dashboard/employees");
-            setError("")
+          setError("")
         }
       } catch (error) {
         if (error.response && !error.response.data.success) {

@@ -38,7 +38,7 @@ const Add = () => {
 
     try {
       const response = await axios.post(
-        `http://localhost:5000/api/salary/add`,
+        `https://employee-management-backend-oelxa09au.vercel.app/api/salary/add`,
         salary,
         {
           headers: {
@@ -63,8 +63,8 @@ const Add = () => {
           <h2 className="text-2xl font-bold mb-6">Add Salary</h2>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-             {/* Department */}
-             <div>
+              {/* Department */}
+              <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Department
                 </label>
@@ -83,7 +83,7 @@ const Add = () => {
                 </select>
               </div>
               {/* employee  */}
-             <div>
+              <div>
                 <label className="block text-sm font-medium text-gray-700">
                   Employee
                 </label>
@@ -157,7 +157,7 @@ const Add = () => {
                   required
                 />
               </div>
-              
+
             </div>
 
             <button

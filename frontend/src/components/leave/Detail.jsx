@@ -11,7 +11,7 @@ const Detail = () => {
     const fetchLeave = async () => {
       try {
         const responnse = await axios.get(
-          `http://localhost:5000/api/leave/detail/${id}`,
+          `https://employee-management-backend-oelxa09au.vercel.app/api/leave/detail/${id}`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -34,22 +34,22 @@ const Detail = () => {
 
   const changeStatus = async (id, status) => {
     try {
-        const responnse = await axios.put(
-          `http://localhost:5000/api/leave/${id}`, {status},
-          {
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        if (responnse.data.success) {
-            navigate('/admin-dashboard/leaves')
+      const responnse = await axios.put(
+        `https://employee-management-backend-oelxa09au.vercel.app/api/leave/${id}`, { status },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
         }
-      } catch (error) {
-        if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
-        }
+      );
+      if (responnse.data.success) {
+        navigate('/admin-dashboard/leaves')
       }
+    } catch (error) {
+      if (error.response && !error.response.data.success) {
+        alert(error.response.data.error);
+      }
+    }
   }
 
   return (
@@ -101,17 +101,17 @@ const Detail = () => {
               </div>
               <div className="flex space-x-3 mb-2">
                 <p className="text-lg font-bold">
-                    {leave.status === "Pending" ? "Action:" : "Status:"}
-                    </p>
-                    {leave.status === "Pending" ? (
-                        <div className="flex space-x-2">
-                            <button className="px-2 py-0.5 bg-teal-300 hover:bg-teal-400"
-                            onClick={() => changeStatus(leave._id, "Approved")}>Approve</button>
-                            <button className="px-2 py-0.5 bg-red-300 hover:bg-red-400"
-                            onClick={() => changeStatus(leave._id, "Rejected")}>Reject</button>
-                        </div>
-                    ) : 
-                    <p className="font-medium">{leave.status}</p>
+                  {leave.status === "Pending" ? "Action:" : "Status:"}
+                </p>
+                {leave.status === "Pending" ? (
+                  <div className="flex space-x-2">
+                    <button className="px-2 py-0.5 bg-teal-300 hover:bg-teal-400"
+                      onClick={() => changeStatus(leave._id, "Approved")}>Approve</button>
+                    <button className="px-2 py-0.5 bg-red-300 hover:bg-red-400"
+                      onClick={() => changeStatus(leave._id, "Rejected")}>Reject</button>
+                  </div>
+                ) :
+                  <p className="font-medium">{leave.status}</p>
                 }
               </div>
             </div>

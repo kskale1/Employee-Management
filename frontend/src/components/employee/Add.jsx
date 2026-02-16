@@ -30,12 +30,12 @@ const Add = () => {
 
     const formDataObj = new FormData()
     Object.keys(formData).forEach((key) => {
-        formDataObj.append(key, formData[key])
+      formDataObj.append(key, formData[key])
     })
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/employee/add",
+        "https://employee-management-backend-oelxa09au.vercel.app/api/employee/add",
         formDataObj,
         {
           headers: {
@@ -51,7 +51,7 @@ const Add = () => {
         alert(error.response.data.error);
       }
     }
-      
+
   };
 
   return (

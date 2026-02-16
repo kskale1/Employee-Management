@@ -7,28 +7,28 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null)
-  const {login} = useAuth()
+  const { login } = useAuth()
   const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
-    
+
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
+        "https://employee-management-backend-oelxa09au.vercel.app/api/auth/login",
         { email, password }
       );
-      if(response.data.success) {
+      if (response.data.success) {
         login(response.data.user)
         localStorage.setItem("token", response.data.token)
-        if(response.data.user.role === "admin") {
-            navigate('/admin-dashboard')
+        if (response.data.user.role === "admin") {
+          navigate('/admin-dashboard')
         } else {
-            navigate("/employee-dashboard")
+          navigate("/employee-dashboard")
         }
       }
     } catch (error) {
-      if(error.response && !error.response.data.success) {
+      if (error.response && !error.response.data.success) {
         setError(error.response.data.error)
       } else {
         setError("Server Error")

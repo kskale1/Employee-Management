@@ -8,11 +8,11 @@ const View = () => {
   const [filteredSalaries, setFilteredSalaries] = useState(null);
   const { id } = useParams();
   let sno = 1;
-  const {user} = useAuth()
+  const { user } = useAuth()
 
   const fetchSalareis = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/salary/${id}/${user.role}`, {
+      const response = await axios.get(`https://employee-management-backend-oelxa09au.vercel.app/api/salary/${id}/${user.role}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -57,43 +57,43 @@ const View = () => {
             />
           </div>
 
-        {filteredSalaries.length > 0 ?(
-          <table className="w-full text-sm text-left text-gray-500">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200">
-              <tr>
-                <th className="px-6 py-3">SNO</th>
-                <th className="px-6 py-3">Emp ID</th>
-                <th className="px-6 py-3">Salary</th>
-                <th className="px-6 py-3">Allowance</th>
-                <th className="px-6 py-3">Deduction</th>
-                <th className="px-6 py-3">Total</th>
-                <th className="px-6 py-3">Pay Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredSalaries.map((salary) => (
-                <tr
-                  key={salary.id}
-                  className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-                >
-                  <td className="px-6 py-3">{sno++}</td>
-                  <td className="px-6 py-3">{salary.employeeId.employeeId}</td>
-                  <td className="px-6 py-3">
-                    {salary.basicSalary}
-                  </td>
-                  <td className="px-6 py-3">
-                    {salary.allowances}
-                  </td>
-                  <td className="px-6 py-3">{salary.deductions}</td>
-                  <td className="px-6 py-3">{salary.netSalary}</td>
-                  <td className="px-6 py-3">
-                    {new Date(salary.payDate).toLocaleDateString()}
-                  </td>
+          {filteredSalaries.length > 0 ? (
+            <table className="w-full text-sm text-left text-gray-500">
+              <thead className="text-xs text-gray-700 uppercase bg-gray-50 border border-gray-200">
+                <tr>
+                  <th className="px-6 py-3">SNO</th>
+                  <th className="px-6 py-3">Emp ID</th>
+                  <th className="px-6 py-3">Salary</th>
+                  <th className="px-6 py-3">Allowance</th>
+                  <th className="px-6 py-3">Deduction</th>
+                  <th className="px-6 py-3">Total</th>
+                  <th className="px-6 py-3">Pay Date</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          ): <div>No Records</div>}
+              </thead>
+              <tbody>
+                {filteredSalaries.map((salary) => (
+                  <tr
+                    key={salary.id}
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                  >
+                    <td className="px-6 py-3">{sno++}</td>
+                    <td className="px-6 py-3">{salary.employeeId.employeeId}</td>
+                    <td className="px-6 py-3">
+                      {salary.basicSalary}
+                    </td>
+                    <td className="px-6 py-3">
+                      {salary.allowances}
+                    </td>
+                    <td className="px-6 py-3">{salary.deductions}</td>
+                    <td className="px-6 py-3">{salary.netSalary}</td>
+                    <td className="px-6 py-3">
+                      {new Date(salary.payDate).toLocaleDateString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : <div>No Records</div>}
         </div>
       )}
     </>

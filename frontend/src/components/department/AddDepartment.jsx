@@ -3,34 +3,34 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddDepartment = () => {
-    const [department, setDepartment] = useState({
-        dep_name: '',
-        description: ''
-    })
-    const navigate = useNavigate()
+  const [department, setDepartment] = useState({
+    dep_name: '',
+    description: ''
+  })
+  const navigate = useNavigate()
 
-    const handleChange = (e) => {
-        const {name, value} = e.target;
-        setDepartment({...department, [name] : value})
-    }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setDepartment({ ...department, [name]: value })
+  }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        try {
-            const response = await axios.post('http://localhost:5000/api/department/add', department, {
-                headers: {
-                    "Authorization" : `Bearer ${localStorage.getItem('token')}`
-                }
-            })
-            if(response.data.success) {
-                navigate("/admin-dashboard/departments")
-            }
-        } catch(error) {
-            if(error.response && !error.response.data.success) {
-                alert(error.response.data.error)
-            }
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await axios.post('https://employee-management-backend-oelxa09au.vercel.app/api/department/add', department, {
+        headers: {
+          "Authorization": `Bearer ${localStorage.getItem('token')}`
         }
+      })
+      if (response.data.success) {
+        navigate("/admin-dashboard/departments")
+      }
+    } catch (error) {
+      if (error.response && !error.response.data.success) {
+        alert(error.response.data.error)
+      }
     }
+  }
 
   return (
     <div className="max-w-3xl mx-auto mt-10 bg-white p-8 rounded-md shadow-md w-96">

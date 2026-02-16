@@ -4,39 +4,39 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Add = () => {
-    const {user} = useAuth()
+  const { user } = useAuth()
 
-    const [leave, setLeave] = useState({
-        userId: user._id,
-    })
+  const [leave, setLeave] = useState({
+    userId: user._id,
+  })
 
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
-    const {name, value} = e.target
-    setLeave((prevState) => ({...prevState, [name] : value}))
+    const { name, value } = e.target
+    setLeave((prevState) => ({ ...prevState, [name]: value }))
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-        const response = await axios.post(
-          `http://localhost:5000/api/leave/add`,leave,
-          {
-            headers: {
-              "Authorization": `Bearer ${localStorage.getItem("token")}`,
-            },
-          }
-        );
-        if (response.data.success) {
-          navigate(`/employee-dashboard/leaves/${user._id}`)
+      const response = await axios.post(
+        `https://employee-management-backend-oelxa09au.vercel.app/api/leave/add`, leave,
+        {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem("token")}`,
+          },
         }
-      } catch (error) {
-        if (error.response && !error.response.data.success) {
-          alert(error.response.data.error);
-        }
+      );
+      if (response.data.success) {
+        navigate(`/employee-dashboard/leaves/${user._id}`)
       }
+    } catch (error) {
+      if (error.response && !error.response.data.success) {
+        alert(error.response.data.error);
+      }
+    }
   }
 
   return (

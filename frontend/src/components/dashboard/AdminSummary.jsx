@@ -17,15 +17,15 @@ const AdminSummary = () => {
   useEffect(() => {
     const fetchSummary = async () => {
       try {
-        const summary = await axios.get('http://localhost:5000/api/dashboard/summary', {
-          headers : {
-            "Authorization" : `Bearer ${localStorage.getItem('token')}`
+        const summary = await axios.get('https://employee-management-backend-oelxa09au.vercel.app/api/dashboard/summary', {
+          headers: {
+            "Authorization": `Bearer ${localStorage.getItem('token')}`
           }
         })
         console.log(summary.data)
         setSummary(summary.data)
-      } catch(error) {
-        if(error.response) {
+      } catch (error) {
+        if (error.response) {
           alert(error.response.data.error)
         }
         console.log(error.messsage)
@@ -34,7 +34,7 @@ const AdminSummary = () => {
     fetchSummary()
   }, [])
 
-  if(!summary) {
+  if (!summary) {
     return <div> Loading...</div>
   }
 
