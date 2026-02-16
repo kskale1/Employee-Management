@@ -18,6 +18,10 @@ app.use(cors({
 app.use(express.json())
 app.use(express.static('public/uploads'))
 
+app.get('/', (req, res) => {
+    res.send("Welcome to Employee Management System API")
+})
+
 app.use('/api/auth', authRouter)
 app.use('/api/department', departmentRouter)
 app.use('/api/employee', employeeRouter)
