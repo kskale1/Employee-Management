@@ -1,5 +1,6 @@
 import express from 'express'
 import cors from 'cors'
+import dotenv from 'dotenv'
 import authRouter from '../routes/auth.js'
 import departmentRouter from '../routes/department.js'
 import employeeRouter from '../routes/employee.js'
@@ -15,7 +16,7 @@ dotenv.config();
 connectToDatabase() 
 const app = express() 
 app.use(cors({
-    origin
+    origin: process.env.FRONTEND_URL || '*'
 }))
 app.use(express.json())
 app.use(express.static('public/uploads'))
@@ -37,3 +38,5 @@ app.use('/api/dashboard', dashboardRouter)
 // app.listen(process.env.PORT, () => {
 //     console.log(`Server is Running on port ${process.env.PORT}`)
 // })
+
+export default app
