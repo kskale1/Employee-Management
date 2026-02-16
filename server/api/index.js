@@ -15,16 +15,20 @@ dotenv.config();
 
 connectToDatabase()
 const app = express()
+// Manual CORS headers — more reliable than cors() on Vercel serverless
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://employee-management-mu-seven.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
 
-app.use(cors({
-  origin: "https://employee-management-mu-seven.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"]
-}))
+  // Immediately respond to preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+  next();
+});
 
-// Handle preflight requests
-app.options('*', cors())
 app.use(express.json())
 app.use(express.static('public/uploads'))
 
