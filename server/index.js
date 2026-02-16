@@ -10,17 +10,11 @@ import attendanceRouter from './routes/attendance.js'
 import dashboardRouter from './routes/dashboard.js'
 import connectToDatabase from './db/db.js'
 
-connectToDatabase()
-
-const app = express()
-
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true
-  })
-)
-
+connectToDatabase() 
+const app = express() 
+app.use(cors({
+    origin
+}))
 app.use(express.json())
 app.use(express.static('public/uploads'))
 
@@ -34,12 +28,5 @@ app.use('/api/attendance', attendanceRouter)
 app.use('/api/dashboard', dashboardRouter)
 
 app.listen(process.env.PORT, () => {
-  console.log('Server is running on port 5000')
+    console.log(`Server is Running on port ${process.env.PORT}`)
 })
-
-
-app.get('/', (req, res) => {
-  res.send('Welcome to the Employee Management System API')
-})
-
-export default app

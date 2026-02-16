@@ -14,7 +14,11 @@ const AuthContext = ({ children }) => {
         const token = localStorage.getItem("token");
         if (token) {
           const response = await axios.get(
+<<<<<<< HEAD
             "https://employee-management-19ti.vercel.app/api/auth/verify",
+=======
+            "https://employee-management-api.vercel.app/api/auth/login",
+>>>>>>> 402558d60c4407868241d8b8e4af6179a8bc0253
             {
               headers: {
                 Authorization: `Bearer ${token}`,
